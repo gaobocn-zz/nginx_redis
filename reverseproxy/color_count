@@ -1,0 +1,35 @@
+# NGINX config fil. To be ln -s at /etc/nginx/sites-available/ & /etc/nginx/sites-enabled/
+
+upstream backend {
+    server 127.0.0.1:8000 weight=1;
+}
+
+server {
+    listen 80;
+    server_name 192.168.0.2; 
+
+    #access_log /vagrant/nginx_access.log;
+    #error_log /vagrant/nginx_error.log;
+
+    location / {
+        include proxy_params;
+        proxy_pass http://backend;
+        proxy_set_header   Host             $host;
+        proxy_set_header   X-Real-IP        $remote_addr;
+        proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+    }
+
+    location /api/ {
+        set $redis_key $args;
+
+        redis_pass	127.0.0.1:6379;
+        default_type	text/html;
+	error_page	404 = /fallback;
+    }
+
+    location = /fallback {
+	include proxy_params;
+	proxy_pass http://backend/$request_uri;
+	#replace_filter "^!S|\np1\n$" "" g;
+    }
+}
