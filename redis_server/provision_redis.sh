@@ -16,7 +16,7 @@ mkdir -p /etc/redis
 cp /tmp/redis-stable/redis.conf /etc/redis
 sed -i -E "s/^supervised no$/supervised systemd/g" /etc/redis/redis.conf
 sed -i -E "s/^dir .\/$/dir \/var\/lib\/redis/g" /etc/redis/redis.conf
-cp ~/color_count_redis/redis_server/redis.service /etc/systemd/system/
+cp ~/nginx_redis/redis_server/redis.service /etc/systemd/system/
 
 
 adduser --system --group --no-create-home redis

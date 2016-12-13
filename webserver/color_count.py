@@ -23,7 +23,8 @@ class Colors(object):
             return self.cache[url]
         else:
             print "compute.."
-            filename = url.split('/')[-1]
+            #ifilename = url.split('/')[-1]
+	    filename = 'temp_image'
             urllib.urlretrieve(url, './%s' % filename)
 
             k = subprocess.check_output("identify -format %k ./" + filename, shell=True)
