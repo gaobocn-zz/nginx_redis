@@ -1,6 +1,6 @@
 # CS 5356 Final Project Count Color of a Image
 
-**Update: This template differences from [color_count](https://github.com/gaobocn/color_count) as it uses redis instead of SQL.**
+**Update: This template differences from [color_count_redis](https://github.com/gaobocn/color_count_redis) as it lets nginx to communicate with redis. While the latter one can only be python to communicate with redis, therefore has to set one redis for each worker**
 
 **This README is copied from [Chris Wang](https://github.com/mw866/one-and-done/blob/master/README.md) (mw866@cornell.edu).**
 
